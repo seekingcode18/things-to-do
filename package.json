@@ -19,6 +19,7 @@
   "homepage": "https://github.com/seekingcode18/things-to-do#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mongodb": "^3.4.1",
     "mongoose": "^5.8.7",
     "nodemon": "^2.0.2"
   }

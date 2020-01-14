@@ -9,9 +9,10 @@ db.once('open', () => {
   console.log('db running')
 
   const Activity = require('./model')
+  Activity.collection.drop();
   const activity = new Activity({
     "category": "Music",
-    "title": "Dua SKDNOGANSFMKGDNSRGKLN AKSDONG KALSD",
+    "title": "Dua Lipa",
     "location": {
       "city": "London",
       "postcode": "SE1 7AY"
