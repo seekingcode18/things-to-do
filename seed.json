@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Music",
+    "title": "Dua Lipa Concert",
+    "location": {
+      "city": "London",
+      "postcode": "SE1 7AY"
+    },
+    "description": "A concert in London for the first time...",
+    "frequency": "once",
+    "date": {"$date" : "2020-07-30T20:00:00.000Z"},
+    "cost": "high"
+    }
+]
