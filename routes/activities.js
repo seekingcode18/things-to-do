@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     MongoClient.connect('mongodb://localhost:27017/', (err, db) => {
         if(err) throw err;
-        const dbo = db.db('things_db')
+        const url = (process.env.NODE_ENV === 'test'? 'things_db_test':'things_db' )
+        const dbo = db.db(url)
         let obj = {
             "category": req.body.category,
             "title": req.body.title,

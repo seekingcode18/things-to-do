@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test';
+
 const mocha = require('mocha');
 const should = require('chai').should();
 const chai = require('chai');
@@ -55,7 +57,7 @@ describe('API routes', () => {
         ops.should.have.property('cost');
         ops.cost.should.equal('high');
         done();
-        collection.drop();
+        //collection.drop();
       })
   })
 
