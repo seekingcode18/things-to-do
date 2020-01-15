@@ -32,7 +32,7 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-// update one activity
+// delete one activity
 router.delete('/:id', async (req, res) => {
   try {
     const activity = await Activity.findOneAndDelete({_id: req.params.id})
@@ -65,8 +65,9 @@ router.post('/', (req, res) => {
         res.status(500).json({message: err.message})
       } else {
         console.log('Saved!')
-        res.send(activity)
+        res.json(activity)
       };
     });
 })
+
 module.exports = router;
