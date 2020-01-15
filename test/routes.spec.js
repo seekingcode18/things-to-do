@@ -57,8 +57,6 @@ describe('API routes', () => {
         ops.should.have.property('cost');
         ops.cost.should.equal('high');
         done();
-        //collection.drop();
       })
   })
-
 })
