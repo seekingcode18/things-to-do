@@ -1,11 +1,9 @@
 process.env.NODE_ENV = 'test';
-
 const mocha = require('mocha');
 const should = require('chai').should();
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../index');
-const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const Activity = require('../models/model');
 
@@ -127,7 +125,6 @@ describe('API routes', () => {
       "date": new Date("2020-07-30T20:00:00"),
       "cost": "high"
     });
-
     let id;
     activity.save(function (err, res) {
       if (err) {
@@ -160,7 +157,6 @@ describe('API routes', () => {
       "date": new Date("2020-07-30T20:00:00"),
       "cost": "high"
     });
-
     let id;
     activity.save(function (err, res) {
       if (err) {
@@ -183,11 +179,7 @@ describe('API routes', () => {
         res.body.ok.should.equal(1);
         done();
       })
-      
-
       };
     });
-    
-      
   })
 })
