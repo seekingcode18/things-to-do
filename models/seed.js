@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/things_db', {
+
+const db_name = (process.env.NODE_ENV === 'test'? 'things_db_test':'things_db' );
+let url = `mongodb://localhost:27017/${db_name}`;
+
+mongoose.connect(url, {
   useNewUrlParser: true
 });
 const db = mongoose.connection;
