@@ -5,12 +5,13 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const pug = require('pug');
 const path = require('path')
-
+const axios = require('axios')
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -28,7 +29,29 @@ app.use(express.json())
 app.use('/api/v1', routes)
 
 app.get('/', (req, res) => {
-  res.render('index', {title: 'Awesome home page'})
+  axios.get('/api/v1/activities', {proxy: { host: '127.0.0.1', port: 3000}}).then( (resp) =>{
+    console.log(resp.data)
+  res.render('index', {title: 'Awesome home page', data: resp.data})})
+  .catch((error) => res.send(error) )
+})
+
+app.get('/add', (req, res) => {
+  res.render('form', {title: 'Add an activity'})
+})
+
+app.post('/adding', (req, res) => {
+  axios.post('/api/v1/activities', req.body, {proxy: { host: '127.0.0.1', port: 3000}}).then( (resp) =>{
+    console.log(resp.data)
+  res.send('it sent')})
+  .catch((error) => res.send(error) )
+})
+
+app.get('/details/:id', (req, res) => {
+  axios.get(`/api/v1/activities/${req.params.id}`, {proxy: { host: '127.0.0.1', port: 3000}}).then((resp) => {
+    console.log('success :', resp.data)
+    res.render('details', {data: resp.data[0]})
+  }).catch((error) => res.status(500).send(error))
+  
 })
 
 

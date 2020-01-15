@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div
+    h2=data.title
+    p category #{data.category}
+    p location #{data.location.postcode}, #{data.location.city}
+    p description #{data.description}
+    p frequency #{data.frequency}
+    p cost #{data.cost}
+  a(href='/update') update this event
