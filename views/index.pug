@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 Things to do
+  form(action='/api/v1/activities', method='GET')
+    button(type='submit') Get all activities
+  p#display #{data}
