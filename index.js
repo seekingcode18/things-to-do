@@ -39,6 +39,10 @@ app.get('/add', (req, res) => {
   res.render('form', {title: 'Add an activity'})
 })
 
+app.get('/update/:id', (req, res) => {
+  res.render('update', {title: 'Update an activity', id: req.params.id})
+})
+
 app.post('/adding', (req, res) => {
   axios.post('/api/v1/activities', req.body, {proxy: { host: '127.0.0.1', port: 3000}}).then( (resp) =>{
     console.log(resp.data)
@@ -46,12 +50,19 @@ app.post('/adding', (req, res) => {
   .catch((error) => res.send(error) )
 })
 
+app.post('/updating', (req, res) => {
+  axios.put(`/api/v1/activities/${req.body._id}`, req.body, {proxy: { host: '127.0.0.1', port: 3000}}).then( (resp) =>{
+    console.log('updating resp: ', resp.data)
+    res.redirect(`/details/${req.body._id}`)})
+  .catch((error) => res.send(error) )
+})
+
 app.get('/details/:id', (req, res) => {
   axios.get(`/api/v1/activities/${req.params.id}`, {proxy: { host: '127.0.0.1', port: 3000}}).then((resp) => {
     console.log('success :', resp.data)
-    res.render('details', {data: resp.data[0]})
+    res.render('details', {data: resp.data[0], title: 'Event Details'})
   }).catch((error) => res.status(500).send(error))
-  
+
 })
 
 

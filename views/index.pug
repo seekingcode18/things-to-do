@@ -1,12 +1,10 @@
 extends layout
 
 block content
-  h1 Things to do
-  form(action='/api/v1/activities', method='GET')
-    button(type='submit') Get all activities
+  a(href='/add') Add a new activity
   each activity in data
     div
       p=activity.title
       p=activity.category
       p=activity.location.city
-      a(href="/details/"+activity._id) view
+      a(href="/details/"+activity._id) view details
