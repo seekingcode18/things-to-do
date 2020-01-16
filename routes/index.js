@@ -6,4 +6,5 @@ router.use(express.json());
 
 router.use('/activities', activities);
 
+
 module.exports = router;

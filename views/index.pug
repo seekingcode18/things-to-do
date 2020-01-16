@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  a(href='/add') Add a new activity
+  each activity in data
+    div
+      p=activity.title
+      p=activity.category
+      p=activity.location.city
+      a(href="/details/"+activity._id) view details

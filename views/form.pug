@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1 Add an activity!
+  form(action='/adding', method='POST')
+    label(for='title') title:
+    input(type='text',name='title')
+    br
+    label(for='category') category:
+    select(name='category')
+      option(value='Music') music
+      option(value='Galleries') galleries
+      option(value='Children') children
+      option(value='Food') food
+    br
+    label(for='city') city:
+    input(type='text',name='city')
+    br
+    label(for='postcode') postcode:
+    input(type='text',name='postcode')
+    br
+    label(for='description') description:
+    input(type='text',name='description')
+    br
+    label(for='frequency') frequency:
+    select(name='frequency')
+      option(value='once') once
+      option(value='ongoing') ongoing
+      option(value='seasonal') seasonal
+    br
+    label(for='date') date:
+    input(type='date',name='date')
+    br
+    label(for='cost') cost:
+    select(name='cost')
+      option(value='free') free
+      option(value='low') low
+      option(value='medium') medium
+      option(value='high') high
+    br
+    button(type='submit') submit

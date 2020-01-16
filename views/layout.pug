@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title=title
+    script(src=js)
+    //- link(rel='stylesheet', href='styles/style.css')
+    style
+      include ../public/styles/style.css
+  body
+    h1 Things To Do
+    a(href='/') home
+    block content
