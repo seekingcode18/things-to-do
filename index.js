@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   axios.get('/api/v1/activities', {proxy: { host: '127.0.0.1', port: 3000}}).then( (resp) =>{
     console.log(resp.data)
   res.render('index', {title: 'Awesome home page', data: resp.data})})
-  .catch((error) => res.send(error) )
+  .catch((error) => res.render('error',{error: error}) )
 })
 
 app.get('/add', (req, res) => {
@@ -48,14 +48,14 @@ app.post('/adding', (req, res) => {
   axios.post('/api/v1/activities', req.body, {proxy: { host: '127.0.0.1', port: 3000}}).then( (resp) =>{
     console.log(resp.data)
     res.send('it sent')})
-    .catch((error) => res.send(error) )
+    .catch((error) => res.render('error',{error: error}) )
   })
 
   app.post('/updating', (req, res) => {
     axios.put(`/api/v1/activities/${req.body._id}`, req.body, {proxy: { host: '127.0.0.1', port: 3000}}).then( (resp) =>{
       console.log('updating resp: ', resp.data)
       res.redirect(`/details/${req.body._id}`)})
-      .catch((error) => res.send(error) )
+      .catch((error) => res.render('error',{error: error}) )
     })
 
     // this one doesn't load the style sheet
@@ -63,7 +63,7 @@ app.post('/adding', (req, res) => {
       axios.get(`/api/v1/activities/${req.params.id}`, {proxy: { host: '127.0.0.1', port: 3000}}).then((resp) => {
     console.log('success :', resp.data)
     res.render('details', {data: resp.data[0], title: 'Event Details'})
-  }).catch((error) => res.status(500).send(error))
+  }).catch((error) => res.status(500).render('error', {error: error}))
 
 })
 
